@@ -1,0 +1,40 @@
+name: 掘金日常
+
+on:
+  schedule:
+    - cron: "15 0 * * *"
+  push:
+    branches:
+      - main
+      - master
+
+  # pull_request:
+  # branches: [ master,main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm包安装
+        run: npm ci
+
+      - name: 开始
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          USER_MOBILE: ${{ secrets.USER_MOBILE }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+        run: |
+          node index.js
