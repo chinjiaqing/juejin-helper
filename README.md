@@ -20,11 +20,13 @@
 
 2. 在仓库 `Settings->Secrets->Actions`中添加如下几个变量：
 
-- EMAIL_USER 发送邮件的邮箱账号
-- EMAIL_PASS 发送邮件的 授权码
-- USER_MOBILE 掘金账号 - 手机号
-- USER_PASSWORD 掘金账号 - 密码
-- USER_EMAIL 接收通知的邮箱账号
+| NAME          | VALUE              |
+| ------------- | ------------------ |
+| EMAIL_USER    | 发送邮件的邮箱账号 |
+| EMAIL_PASS    | 发送邮件的授权码   |
+| USER_MOBILE   | 掘金账号 - 手机号  |
+| USER_PASSWORD | 掘金账号 - 密码    |
+| USER_EMAIL    | 接收通知的邮箱账号 |
 
 3. 在 `Settings->Actions`确保 actions 是开启状态
 
