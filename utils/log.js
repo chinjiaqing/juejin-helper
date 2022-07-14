@@ -3,7 +3,7 @@ const logger = new DotJson('record.json');
 
 // 写入数据
 // 避免文件不存在
-logger.set('timestamp', Date.now()).save()
+logger.set('homepage', `https://github.com/chinjiaqing/juejin-helper`).save()
 
 const readLogger = async keyName => {
     return new Promise((r, j) => {
