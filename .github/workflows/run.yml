@@ -2,7 +2,9 @@ name: 掘金日常
 
 on:
   schedule:
-    - cron: "15 0 * * *"
+    # 执行两次 避免偶尔执行失败的情况出现
+    - cron: "15 22 * * *"
+    - cron: "30 23 * * *"
   push:
     branches:
       - main
