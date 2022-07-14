@@ -5,6 +5,9 @@ const { sendEmail } = require(`./utils/email`)
 const signIn = async () => {
     try {
         const cookie = await getCookie()
+        if (!cookie) {
+            throw new Error(`获取cookie失败`)
+        }
         const API = new JuejinHttp(cookie)
         const isCheckIn = await API.queryTodayStatus()
         let lotteryName = ''
