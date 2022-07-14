@@ -122,7 +122,7 @@ const articlePublish = async task => {
     const page = await browser.newPage()
     try {
         // 爬取一篇文章发布 并删除
-        await page.goto(`https://segmentfault.com/channel/frontend`)
+        await page.goto(`https://segmentfault.com/blogs/newest`)
         await page.waitForTimeout(1000)
         await page.waitForSelector(".content-list-wrap")
         const host = `https://segmentfault.com`
@@ -155,7 +155,7 @@ const articlePublish = async task => {
                 content += `
 
                 来源：[${title}](${link})
-                
+
                 `
                 let brief_content = content.substr(0, 50) + '...'
                 while (brief_content.length < 50) {
