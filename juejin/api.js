@@ -318,6 +318,20 @@ class JuejinHttp {
             }
         })
     }
+
+    // 成长任务埋点
+    // 目前用于 文章阅读
+    growthPointReport(item_id, task_id = 13) {
+        return this.request({
+            method: 'POST',
+            url: 'https://api.juejin.cn/growth_api/v1/user_growth/add_point_report',
+            data: {
+                growth_type: 1,
+                item_id: item_id + "",
+                task_id
+            }
+        })
+    }
 }
 
 module.exports = JuejinHttp

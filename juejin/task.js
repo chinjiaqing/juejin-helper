@@ -88,10 +88,10 @@ const articleDigg = async task => {
         console.log(`获取文章列表失败[d1]`)
         return
     }
-    const article = list[0]
     const times = task.limit - task.done; //需要执行的次数
     console.log(`需要点赞${times}篇文章`)
     for (let i = 0; i < times; i++) {
+        const article = list[i] || list[0]
         await API.diggSave(article['article_id'])
         await API.diggCancel(article['article_id'])
     }
@@ -101,18 +101,16 @@ const articleDigg = async task => {
 
 // 阅读文章
 const readArticle = async task => {
+    const cookie = await getCookie()
+    const API = new JuejinHttp(cookie)
     const host = 'https://juejin.cn/post/'
     const articles = await getArticleList()
     const times = task.limit - task.done; //需要执行的次数
     console.log(`需要阅读${times}篇文章`)
-    const browser = await getBrowser()
     for (let i = 0; i < times; i++) {
         let article = articles[i]
-        let viewPage = await browser.newPage()
-        await viewPage.goto(`${host}${article.article_id}`)
         console.log(`阅读文章《${article['article_info']['title']}》`)
-        await viewPage.waitForTimeout(1000)
-        await viewPage.close()
+        await API.growthPointReport(article.article_id)
     }
 }
 
