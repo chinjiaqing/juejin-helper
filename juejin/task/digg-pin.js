@@ -1,6 +1,8 @@
 // 沸点点赞 
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
+const { logger } = require("./../../utils/log")
+
 const pinDigg = async task => {
     const cookie = await getCookie()
     const API = new JuejinHttp(cookie)

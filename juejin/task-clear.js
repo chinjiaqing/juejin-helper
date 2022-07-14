@@ -11,7 +11,7 @@ const { readLogger } = require("../utils/log")
         const cookie = await getCookie()
         const API = new JuejinHttp(cookie)
         console.log(`clear start ...`)
-        const articles = await readLogger('article')
+        const articles = await readLogger('articles')
         // 文章相关
         if (articles) {
             const keys = Object.keys(articles)
@@ -22,21 +22,25 @@ const { readLogger } = require("../utils/log")
                     // 移除收藏的文章
                     if (k == 'collections') {
                         await API.articleCollectRemove(id)
+                        console.log(`取消收藏：${id}`)
                     }
 
                     // 删除评论
                     if (k == 'comments') {
                         await API.articleCommentRemove(id)
+                        console.log(`删除评论：${id}`)
                     }
 
                     // 删除点赞文章
                     if (k == 'diggs') {
                         await API.diggCancel(id)
+                        console.log(`取消点赞：${id}`)
                     }
 
                     // 删除发布的文章
                     if (k == 'publish') {
                         await API.articleRemove(id)
+                        console.log(`删除文章：${id}`)
                     }
                 }
 
@@ -55,16 +59,19 @@ const { readLogger } = require("../utils/log")
                     // 删除评论
                     if (k == 'comments') {
                         await API.articleCommentRemove(id)
+                        console.log(`删除评论[pin]：${id}`)
                     }
 
                     // 删除点赞沸点
                     if (k == 'diggs') {
                         await API.diggCancel(id, 4)
+                        console.log(`取消点赞[pin]：${id}`)
                     }
 
                     // 删除发布的沸点
                     if (k == 'publish') {
                         await API.pinRemove(id)
+                        console.log(`删除沸点：${id}`)
                     }
                 }
             }
