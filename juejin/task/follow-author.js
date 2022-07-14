@@ -1,5 +1,6 @@
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
+const { logger } = require("./../../utils/log")
 //关注用户
 const followAuthor = async task => {
     const cookie = await getCookie()
@@ -13,13 +14,17 @@ const followAuthor = async task => {
 
     const times = task.limit - task.done; //需要执行的次数
     console.log(`需要关注${times}位用户`)
+    const ids = [];
     for (let i = 0; i < times; i++) {
         const author = list[i] || false
         if (!author) break;
         await API.toggleFollowAuthor(author['user_id'], true)
         // 取消关注
-        await API.toggleFollowAuthor(author['user_id'], false)
+        ids.push(author['user_id'])
+        // await API.toggleFollowAuthor(author['user_id'], false)
     }
+    logger.set('follows', ids).save()
+
     console.log(`关注用户 done`)
 }
 

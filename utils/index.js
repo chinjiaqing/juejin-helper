@@ -10,8 +10,12 @@ const deepMerge = (ops1, ops2) => {
     })
     return ops
 }
+const getRandomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
 module.exports = {
-    deepMerge
+    deepMerge,
+    getRandomInt
 }

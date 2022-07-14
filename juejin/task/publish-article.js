@@ -1,6 +1,7 @@
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
 const { getBrowser } = require("../../puppeteer/browser")
+const { logger } = require('../../utils/log')
 
 
 const mockArticleData = {
@@ -168,6 +169,7 @@ const articlePublish = async task => {
     }
 
     articles = articles.concat(defaultArticles)
+    const ids = []
     for (let i = 0; i < times; i++) {
         let currentArticle = articles[i]
         let { title, brief_content, content } = currentArticle
@@ -192,9 +194,11 @@ const articlePublish = async task => {
         if (publishResJson.err_no == 0) {
             const data = publishResJson.data
             // 删除刚刚发布的文章
-            await API.articleRemove(data.article_id || '')
+            ids.push(data.article_id)
+            // await API.articleRemove(data.article_id || '')
         }
     }
+    logger.set('articles.publish', ids).save()
     await page.close()
     console.log(`发布文章 done`)
 }

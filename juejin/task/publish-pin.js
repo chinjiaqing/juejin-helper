@@ -1,19 +1,23 @@
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
 const { getRandomSentence } = require('../../utils/jinrishici')
+const { logger } = require('../../utils/log')
 // 发布沸点
 const pinPublish = async task => {
     const cookie = await getCookie()
     const API = new JuejinHttp(cookie)
     const times = task.limit - task.done; //需要执行的次数
     console.log(`需要发布${times}篇沸点`)
+    const ids = []
     for (let i = 0; i < times; i++) {
         // 获取随机一句古诗词
         const words = await getRandomSentence()
         const pinRes = await API.pinPublish(words)
         // 删除刚发布的沸点
-        await API.pinRemove(pinRes['msg_id'])
+        ids.push(pinRes['msg_id'])
+        // await API.pinRemove(pinRes['msg_id'])
     }
+    logger.set('pins.publish', ids)
     console.log(`发布沸点 done`)
 }
 

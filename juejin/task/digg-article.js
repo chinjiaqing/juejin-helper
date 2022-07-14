@@ -2,6 +2,7 @@
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
 const { getArticleList } = require('../common')
+const { logger } = require("./../../utils/log")
 
 const articleDigg = async task => {
     const cookie = await getCookie()
@@ -15,12 +16,15 @@ const articleDigg = async task => {
     }
     const times = task.limit - task.done; //需要执行的次数
     console.log(`需要点赞${times}篇文章`)
+    const ids = []
     for (let i = 0; i < times; i++) {
         const article = list[i] || list[0]
         await API.diggSave(article['article_id'])
         // 取消点赞
-        await API.diggCancel(article['article_id'])
+        ids.push(article['article_id'])
+        // await API.diggCancel(article['article_id'])
     }
+    logger.set('articles.diggs', ids).save()
     console.log(`点赞文章 done`)
 }
 
