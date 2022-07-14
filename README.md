@@ -14,7 +14,7 @@
 
 ## 【new】成长任务说明
 
-**发布文章，发布评论，点赞等相关操作都会有的对应的删除和取消操作，完全不留痕迹，避免污染账号。**
+**发布文章，发布评论，点赞等相关操作都会有的对应的删除和取消操作，避免污染账号。**
 
 ## 使用 github workflows 进行托管
 
@@ -61,6 +61,6 @@ USER_PASSWORD=""
 USER_EMAIL=""
 ```
 
-3. 执行 `node index` 即可
+3. `npm install` 安装完依赖后，执行 `node index` 即可
 
 4. 在`puppeteer/browser.js` 中 配置 `headless:false` 可显示浏览器界面(部署时记得改为 false)
