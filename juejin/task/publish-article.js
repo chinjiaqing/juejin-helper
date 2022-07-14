@@ -139,8 +139,8 @@ const articlePublish = async task => {
             console.log(`未抓取到合适的文章`);
         } else {
             for (let i = 0; i < times; i++) {
-                let link = links[i] || links[0]
-                await page.goto(host + link)
+                let link = host + (links[i] || links[0])
+                await page.goto(link)
                 await page.waitForTimeout(1000)
                 await page.waitForSelector('h1.h2')
                 const title = await page.$$eval("h1.h2", els => {
@@ -152,6 +152,11 @@ const articlePublish = async task => {
                 if (content.length == 0) {
                     content += title
                 }
+                content += `
+                
+                > 来源：[${title}](${link})
+                
+                `
                 let brief_content = content.substr(0, 50) + '...'
                 while (brief_content.length < 50) {
                     brief_content += brief_content
