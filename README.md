@@ -65,4 +65,4 @@ USER_EMAIL=""
 
 3. `npm install` 安装完依赖后，执行 `node index` 即可
 
-4. 在`puppeteer/browser.js` 中 配置 `headless:false` 可显示浏览器界面(部署时记得改为 false)
+4. 在`puppeteer/browser.js` 中 配置 `headless:false` 可显示浏览器界面(部署时记得改为 true)
