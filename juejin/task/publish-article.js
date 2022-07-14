@@ -153,8 +153,8 @@ const articlePublish = async task => {
                     content += title
                 }
                 content += `
-                
-                > 来源：[${title}](${link})
+
+                来源：[${title}](${link})
                 
                 `
                 let brief_content = content.substr(0, 50) + '...'
