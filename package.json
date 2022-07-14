@@ -1,13 +1,18 @@
 {
-  "name": "juejin-utils",
+  "name": "juejin-helper",
   "version": "1.0.0",
-  "description": "",
+  "description": "稀土掘金助手，包含每日签到，沾喜气，免费抽奖，每日成长任务等",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "掘金",
+    "juejin",
+    "掘金签到",
+    "掘金成长等级"
+  ],
+  "author": "https://github.com/chinjiaqing/juejin-helper",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
