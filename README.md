@@ -34,3 +34,29 @@
 
 - [网易邮箱-POP3/SMTP/IMAP](https://help.mail.163.com/faq.do?m=list&categoryID=90)
 - [nodemailer 参考手册](https://www.npmjs.com/package/nodemailer)
+
+## 本地开发调试
+
+1. clone 本仓库
+2. 在项目根目录新建 `.env` 文件，内容如下：
+
+```
+# 发送邮件的邮箱账号
+EMAIL_USER=""
+
+# 发送邮件的授权码
+EMAIL_PASS=""
+
+# 掘金账号 - 手机号
+USER_MOBILE=""
+
+# 掘金账号 - 密码
+USER_PASSWORD=""
+
+# 接收通知的邮箱账号
+USER_EMAIL=""
+```
+
+3. 执行 `node index` 即可
+
+4. 在`puppeteer/browser.js` 中 配置 `headless:false` 可显示浏览器界面(部署时记得改为 false)
