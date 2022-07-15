@@ -152,11 +152,7 @@ const articlePublish = async task => {
                 if (content.length == 0) {
                     content += title
                 }
-                content += `
-
-                来源：[${title}](${link})
-
-                `
+                content += `\n 来源： [${title}](${link}) \n`
                 let brief_content = content.substr(0, 50) + '...'
                 while (brief_content.length < 50) {
                     brief_content += brief_content
