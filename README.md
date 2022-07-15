@@ -20,6 +20,8 @@
 
 ## 使用 github workflows 进行托管
 
+[https://github.com/chinjiaqing/juejin-helper](https://github.com/chinjiaqing/juejin-helper)
+
 **大约在每天的北京时间 8：00 左右执行**
 
 1. Fork 仓库
