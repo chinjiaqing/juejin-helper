@@ -1,6 +1,7 @@
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
-const { getRandomSentence } = require('../../utils/jinrishici')
+// const { getRandomSentence } = require('../../utils/jinrishici')
+const { getHitokotoWords } = require("../../utils/hitokoto")
 const { logger } = require('../../utils/log')
 // 发布沸点
 const pinPublish = async task => {
@@ -11,7 +12,7 @@ const pinPublish = async task => {
     const ids = []
     for (let i = 0; i < times; i++) {
         // 获取随机一句古诗词
-        const words = await getRandomSentence()
+        const words = await getHitokotoWords()
         const pinRes = await API.pinPublish(words)
         // 删除刚发布的沸点
         ids.push(pinRes['msg_id'])
