@@ -2,7 +2,7 @@ require('dotenv').config()
 const { getCookie } = require('./cookie')
 const JuejinHttp = require('./api')
 const { readLogger } = require("../utils/log")
-
+const { closeBrowser } = require("../puppeteer/browser")
 
 
 
@@ -85,4 +85,7 @@ const { readLogger } = require("../utils/log")
             }
         }
         console.log(`clear end ...`)
+
+        // 关闭浏览器
+        await closeBrowser()
     })()
