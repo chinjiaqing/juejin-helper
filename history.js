@@ -1,5 +1,5 @@
 
-const data = { "homepage": "https://github.com/chinjiaqing/juejin-helper" }
+            const data = {"homepage":"https://github.com/chinjiaqing/juejin-helper"}
 
-export default data
-
+            export default data
+        
