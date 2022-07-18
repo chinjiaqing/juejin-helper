@@ -1,7 +1,8 @@
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
 const { getArticleList } = require('../common')
-const { logger } = require("./../../utils/log")
+const { insertTo } = require("../../utils/db")
+const { getDateStr } = require("../../utils/dayjs")
 // 阅读文章
 const articleCollect = async task => {
     const articles = await getArticleList()
@@ -18,20 +19,26 @@ const articleCollect = async task => {
         return
     }
     // 取第一个收藏集  一般为默认 收藏集
-    const defaultCollectionId = collectionList[0]['collection_id']
+    const { collection_id, collection_name } = collectionList[0]
     const times = task.limit - task.done; //需要执行的次数
     console.log(`需要收藏${times}篇文章`)
-    const collectionIds = []
+    const collections = []
     for (let i = 0; i < times; i++) {
         const article = list[i] || list[0]
-        await API.articleCollectAdd(article['article_id'], defaultCollectionId)
-        // 取消收藏
-        collectionIds.push(article['article_id'])
-        // await API.articleCollectRemove(article['article_id'])
+        const { article_id, title } = article['article_info']
+        await API.articleCollectAdd(article_id, collection_id)
+        collections.push({
+            ident: 'articles.collections',
+            id: article_id,
+            action_name: '取消收藏',
+            title,
+            content: `收藏了文章 <a href="https://juejin.cn/post/${article_id}" target="_blank">《${title}》</a>`,
+            timestr: getDateStr(2),
+            desc: `收藏至 <a href="https://juejin.cn/collection/${collection_id}" target="_blank">${collection_name}</a>`
+        })
+        // await API.articleCollectRemove(article_id)
     }
-    // 将收藏的文章 缓存下来，第二天移除
-    logger.set('articles.collections', collectionIds).save()
+    await insertTo(collections)
     console.log(`收藏文章 done`)
 }
-
 module.exports = articleCollect

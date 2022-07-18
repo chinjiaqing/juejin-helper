@@ -31,16 +31,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm包安装
         run: npm ci
-      - name: 清除上一次数据
-        if: github.event.schedule == '15 22 * * *'
-        env:
-          EMAIL_USER: ${{ secrets.EMAIL_USER }}
-          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-          USER_MOBILE: ${{ secrets.USER_MOBILE }}
-          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-          USER_EMAIL: ${{ secrets.USER_EMAIL }}
-        run: |
-          node juejin/task-clear.js
       - name: 开始任务
         env:
           EMAIL_USER: ${{ secrets.EMAIL_USER }}

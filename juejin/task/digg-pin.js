@@ -1,8 +1,8 @@
 // 沸点点赞 
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
-const { logger } = require("./../../utils/log")
-
+const { insertTo } = require("../../utils/db")
+const { getDateStr } = require("../../utils/dayjs")
 const pinDigg = async task => {
     const cookie = await getCookie()
     const API = new JuejinHttp(cookie)
@@ -14,16 +14,23 @@ const pinDigg = async task => {
     }
     const times = task.limit - task.done; //需要执行的次数
     console.log(`需要点赞${times}篇沸点`)
-    const ids = []
+    const dbData = []
     for (let i = 0; i < times; i++) {
         const article = list[i] || list[0]
+        const { msg_id, content } = article['msg_Info']
         await API.diggSave(article['msg_id'], 4)
         // 取消点赞
         // await API.diggCancel(article['msg_id'], 4)
-        ids.push(article['msg_id'])
+        dbData.push({
+            action_name: '取消点赞',
+            ident: 'pins.diggs',
+            id: msg_id,
+            timestr: getDateStr(2),
+            content: `点赞了沸点 <a href="https://juejin.cn/pin/${msg_id}" target="_blank">${content}</a>`
+        })
 
     }
-    logger.set('pins.diggs', ids).save()
+    await insertTo(dbData)
     console.log(`点赞沸点 done`)
 }
 

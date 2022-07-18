@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
     // 这里的邮箱配置以网易邮箱为例，qq邮箱端口和host等均会有差异 具体可以留言提问或百度
     email: {

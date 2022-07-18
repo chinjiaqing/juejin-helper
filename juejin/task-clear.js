@@ -1,10 +1,11 @@
-require('dotenv').config()
 const { getCookie } = require('./cookie')
 const JuejinHttp = require('./api')
 const { readLogger } = require("../utils/log")
 const { closeBrowser } = require("../puppeteer/browser")
 
-
+    /***
+     * 隔天删除数据 也会扣分，此文件已废弃
+     */
 
     ; (async () => {
 
