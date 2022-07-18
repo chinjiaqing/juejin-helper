@@ -51,6 +51,7 @@
         max-width: 1200px;
         width: 100%;
         margin: 0 auto;
+        display: none;
       }
       .item p {
         font-size: 13px;
@@ -75,6 +76,7 @@
       }
       h1 {
         margin: 50px 0;
+        text-align: center;
       }
       .btn {
         margin-left: 20px;
@@ -92,8 +94,8 @@
         margin: 10px 0;
       }
     </style>
+    <h1>掘金发布管理</h1>
     <div class="container">
-      <h1>掘金发布管理</h1>
       <div>
         <span class="bold">月份：</span>
       </div>
@@ -111,7 +113,6 @@
     <script type="module">
       import data from "./history.js";
       function renderNav(data) {
-        console.log("1111");
         $(".list").html("");
         $(".sub-nav").html("");
         const $con = $(".navs");
@@ -127,8 +128,6 @@
       }
 
       function renderSubNavs(navKey) {
-        console.log("1111222");
-
         const subNavs = data[navKey];
         const $con = $(".sub-navs");
         if (!subNavs) {
@@ -144,8 +143,6 @@
       }
 
       function renderList(navKey, subNavKey) {
-        console.log("1111333");
-
         const list = data[navKey] && data[navKey][subNavKey];
         if (!list) {
           return $(".list").html(``);
@@ -154,7 +151,7 @@
         for (let item of list) {
           let itemHtml = ``;
           if (item.content) {
-            itemHtml += `<p class="content"><span>${item.timestr}</span>${item.content}<span class="btn">${item.action_name}</span></p>`;
+            itemHtml += `<p class="content"><span>${item.timestr}</span>${item.content}<span data-ident="${item.ident}" data-id="${item.id}" class="btn">${item.action_name}</span></p>`;
           }
           if (item.desc) {
             itemHtml += `<p class="small">${item.desc}</p>`;
@@ -162,6 +159,11 @@
           html += `<div class="item">${itemHtml}</div>`;
         }
         $(".list").html(html);
+      }
+
+      function handleAction(ident, id) {
+        console.log(ident, id);
+        alert(`开发中...`);
       }
 
       $(".container").delegate(".nav", "click", function (e) {
@@ -172,19 +174,31 @@
         $(this).addClass("active").siblings().removeClass("active");
         renderList($(this).data("pid"), $(this).data("id"));
       });
-
+      $(".container").delegate(".btn", "click", function () {
+        const ident = $(this).data("ident");
+        const id = $(this).data("id");
+        handleAction(ident, id);
+      });
       if (data) {
         const navs = Object.keys(data).filter((v) => v != "homepage");
-        if (navs) {
+        console.log(
+          "%c [ navs ]-182",
+          "font-size:13px; background:pink; color:#bf2c9f;",
+          navs
+        );
+        if (navs && navs.length > 0) {
+          $(".container").show();
           renderNav(navs);
           $(".nav").eq(0).trigger("click");
           if ($(".sub-nav")) {
             $(".sub-nav").eq(0).trigger("click");
           }
         } else {
-          $(".container").html(
-            `<div style="text-align:center">暂无数据~</div>`
-          );
+          $(".container")
+            .html(
+              `<div style="text-align:center;line-height:200px">暂无数据~</div>`
+            )
+            .show();
         }
       }
     </script>
