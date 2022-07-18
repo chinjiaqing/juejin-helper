@@ -17,6 +17,7 @@
 **发布文章，发布评论，点赞等相关操作都会有的对应的删除和取消操作，避免污染账号。**
 
 - 2022/07/18 隔天删除也会扣分，现已修改为手动删除
+    - 在[https://htmlpreview.github.io/?](https://htmlpreview.github.io/?)输入你Fork后仓库的index.html路径可以预览`index.html`(历史操作记录)
 - 2022/07/14 取消点赞、删除文章\评论等操作会导致扣分，现已修改为保存至`record.json` 第二天运行任务时再删除
 
 ## 使用 github workflows 进行托管
