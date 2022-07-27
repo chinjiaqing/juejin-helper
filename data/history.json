@@ -1271,6 +1271,29 @@
                 "id": "7125072892970139678",
                 "timestr": "2022-07-27 22:32:57",
                 "content": "点赞了沸点 <a href=\"https://juejin.cn/pin/7125072892970139678\" target=\"_blank\">新文章：“万物皆可clip-path，纯CSS绘制0-9数字” - https://www.zhangxinxu.com/wordpress/2022/07/clip-path-css-number/ 抽几个小时使用 clip-path 绘制了一套 CSS 数字，可任意免费使用，大家自取。[灵光一现]</a>"
+            },
+            {
+                "ident": "articles.collections",
+                "id": "7125088903412842527",
+                "action_name": "取消收藏",
+                "title": "CSS3 的 :root 伪类和 html 有什么区别？",
+                "content": "收藏了文章 <a href=\"https://juejin.cn/post/7125088903412842527\" target=\"_blank\">《CSS3 的 :root 伪类和 html 有什么区别？》</a>",
+                "timestr": "2022-07-27 23:39:41",
+                "desc": "收藏至 <a href=\"https://juejin.cn/collection/6850418468039491598\" target=\"_blank\">前端</a>"
+            },
+            {
+                "action_name": "取消关注",
+                "ident": "follows",
+                "id": "3913917124322062",
+                "timestr": "2022-07-27 23:39:42",
+                "content": "关注了用户 <a href=\"https://juejin.cn/user/3913917124322062\" target=\"_blank\">末世未然</a>"
+            },
+            {
+                "action_name": "取消关注",
+                "ident": "follows",
+                "id": "940837682306830",
+                "timestr": "2022-07-27 23:39:43",
+                "content": "关注了用户 <a href=\"https://juejin.cn/user/940837682306830\" target=\"_blank\">清秋</a>"
             }
         ]
     }
