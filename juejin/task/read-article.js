@@ -1,8 +1,6 @@
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
 const { getArticleList } = require('../common')
-const { insertTo } = require("../../utils/db")
-const { getDateStr } = require("../../utils/dayjs")
 // 阅读文章
 const readArticle = async task => {
     const cookie = await getCookie()

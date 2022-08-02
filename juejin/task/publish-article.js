@@ -1,8 +1,6 @@
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
 const { getBrowser } = require("../../puppeteer/browser")
-const { insertTo } = require("../../utils/db")
-const { getDateStr } = require("../../utils/dayjs")
 
 const mockArticleData = {
     title: '如果有一天不做前端了，我会做什么？',
@@ -170,7 +168,6 @@ const articlePublish = async task => {
     }
 
     articles = articles.concat(defaultArticles)
-    const dbData = []
     for (let i = 0; i < times; i++) {
         let currentArticle = articles[i]
         let { title, brief_content, content } = currentArticle
@@ -194,20 +191,11 @@ const articlePublish = async task => {
         const publishResJson = await publishRes.json()
         if (publishResJson.err_no == 0) {
             const data = publishResJson.data
-            dbData.push({
-                action_name: '删除文章',
-                ident: 'articles.publish',
-                id: data.article_id,
-                timestr: getDateStr(2),
-                content: `发布了文章 <a href="https://juejin.cn/post/${data.article_id}" target="_blank">${title}</a>`
-
-            })
             // 删除刚刚发布的文章
             // ids.push(data.article_id)
             // await API.articleRemove(data.article_id || '')
         }
     }
-    await insertTo(dbData)
     await page.close()
     console.log(`发布文章 done`)
 }

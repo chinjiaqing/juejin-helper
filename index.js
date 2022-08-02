@@ -1,10 +1,8 @@
 const { signIn } = require('./sign')
 const { growth } = require('./growth')
 const { closeBrowser } = require("./puppeteer/index")
-const { exportJson2Js } = require("./utils/db")
     ; (async () => {
         await signIn()
         await growth()
         await closeBrowser()
-        await exportJson2Js()
     })()
