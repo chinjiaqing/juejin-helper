@@ -3,6 +3,10 @@ const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
 // const { getRandomSentence } = require('../../utils/jinrishici')
 const { getHitokotoWords } = require("../../utils/hitokoto")
+const { insertTo, dbGet } = require("../../utils/db")
+const { getRandomInt } = require("./../../utils/index")
+const { saveComments } = require("../common")
+
 const pinComment = async task => {
     const cookie = await getCookie()
     const API = new JuejinHttp(cookie)
@@ -17,7 +21,12 @@ const pinComment = async task => {
         const article = pins[i] || pins[0]
         // 随机评论一句古诗
         const { msg_id, content } = article['msg_Info']
-        const words = await getHitokotoWords()
+        await saveComments(msg_id, 4)
+        const newDbComments = await dbGet('/comments/pin')
+        const word = await getHitokotoWords()
+        const comments = [word].concat(newDbComments || [])
+        const index = getRandomInt(0, comments.length - 1)
+        const words = comments[index] || word
         const comment = await API.articleCommentAdd(msg_id, words, 4)
         // 删除评论
         // await API.articleCommentRemove(comment['comment_id'])

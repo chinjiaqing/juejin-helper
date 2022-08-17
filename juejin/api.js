@@ -340,6 +340,21 @@ class JuejinHttp {
             }
         })
     }
+
+    // 获取文章评论
+    getArticleComments(item_id, item_type = 2) {
+        return this.request({
+            method: 'POST',
+            url: 'https://api.juejin.cn/interact_api/v1/comment/list',
+            data: {
+                cursor: "0",
+                item_type,
+                sort: 0,
+                limit: 20,
+                item_id: item_id + "",
+            }
+        })
+    }
 }
 
 module.exports = JuejinHttp

@@ -1,7 +1,8 @@
 // 点赞文章
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
-const { getArticleList } = require('../common')
+const { getArticleList, saveComments } = require('../common')
+const { insertTo, dbGet } = require("../../utils/db")
 const articleDigg = async task => {
     const cookie = await getCookie()
     const API = new JuejinHttp(cookie)
@@ -17,7 +18,7 @@ const articleDigg = async task => {
     for (let i = 0; i < times; i++) {
         const article = list[i] || list[0]
         const { article_id, title } = article['article_info']
-
+        await saveComments(article_id)
         await API.diggSave(article_id)
         // 取消点赞
         // await API.diggCancel(article['article_id'])

@@ -1,8 +1,9 @@
 // 文章评论
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
-const { getArticleList } = require('../common')
+const { getArticleList, saveComments } = require('../common')
 const { getRandomInt } = require("./../../utils/index")
+const { insertTo, dbGet } = require("../../utils/db")
 const articleComment = async task => {
     const cookie = await getCookie()
     const API = new JuejinHttp(cookie)
@@ -29,7 +30,10 @@ const articleComment = async task => {
         const article = articles[i] || false
         if (!article) break;
         const { article_id, title } = article['article_info']
-        const index = getRandomInt(0, defaultComments.length)
+        await saveComments(article_id, 2)
+        const newDbComments = await dbGet('/comments/article')
+        const comments = defaultComments.concat(newDbComments || [])
+        const index = getRandomInt(0, comments.length - 1)
         const words = defaultComments[index] || defaultComments[0]
         const comment = await API.articleCommentAdd(article_id, words)
         // 删除评论

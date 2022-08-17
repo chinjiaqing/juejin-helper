@@ -1,6 +1,7 @@
 // 沸点点赞 
 const { getCookie } = require('../cookie')
 const JuejinHttp = require('../api')
+const { saveComments } = require('../common')
 const pinDigg = async task => {
     const cookie = await getCookie()
     const API = new JuejinHttp(cookie)
@@ -15,6 +16,7 @@ const pinDigg = async task => {
     for (let i = 0; i < times; i++) {
         const article = list[i] || list[0]
         const { msg_id, content } = article['msg_Info']
+        await saveComments(msg_id, 4)
         await API.diggSave(article['msg_id'], 4)
         // 取消点赞
         // await API.diggCancel(article['msg_id'], 4)
