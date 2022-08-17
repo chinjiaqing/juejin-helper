@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { deepMerge } = require('../utils')
+const { deepMerge, getRandomInt } = require('../utils')
 const defaultOptions = {
     method: 'GET',
     data: {},
@@ -189,9 +189,15 @@ class JuejinHttp {
 
     // 获取推荐用户
     getRecommendAuthors() {
+        const categoryIds = [6809637769959178254, 6809637767543259144, 6809635626879549454, 6809635626661445640, 6809637773935378440, 6809637771511070734, 6809637776263217160, 6809637772874219534]
+        const id = categoryIds[getRandomInt(0, categoryIds.length)]
+        const idStr = id ? `$category_id=${id}` : '' // 没有id 就为推荐
+        const page = getRandomInt(0, 4)
+        const cursor = page * 20
+        // 随机分页 和 随机 分类
         return this.request({
             method: 'GET',
-            url: 'https://api.juejin.cn/user_api/v1/author/recommend',
+            url: `https://api.juejin.cn/user_api/v1/author/recommend${idStr}&coursor=${cursor}&limit=20`,
         })
     }
 
