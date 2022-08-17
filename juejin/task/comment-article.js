@@ -6,7 +6,7 @@ const { getRandomInt } = require("./../../utils/index")
 const articleComment = async task => {
     const cookie = await getCookie()
     const API = new JuejinHttp(cookie)
-    const articles = await getArticleList()
+    const articles = await getArticleList(200)
     if (articles.length == 0) {
         console.log(`获取文章列表失败[d1]`)
         return
