@@ -10,4 +10,6 @@ const writeTimestamp = () => {
     })
 }
 
-writeTimestamp()
+module.exports = {
+    writeTimestamp
+}
