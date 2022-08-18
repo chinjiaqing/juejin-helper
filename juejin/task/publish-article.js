@@ -126,7 +126,7 @@ const articlePublish = async task => {
         const host = `https://segmentfault.com`
         links = await page.$$eval('.content-list-wrap .list-group-item', els => {
             return els.map(el => {
-                let $a = el.querySelector("h5 a.title")
+                let $a = el.querySelector("a .title")
                 if ($a) {
                     return $a.getAttribute('href')
                 }
