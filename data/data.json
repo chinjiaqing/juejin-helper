@@ -2657,7 +2657,13 @@
             "看了使用说明,有orm的部分\n要不然查询出来的结果就是未知的",
             "DB::table()->where()->get()这是查询构造器，并不是ORM。看你的写法应该是Laravel里的吧？Eloquent ORM那一章里的内容才是ORM。所以你推荐的这个GO的库只是实现了稍微好用点的查询构造器，ORM还没呢。",
             "我说呢linux的qq怎么无了，，前几天看到消息说是腾讯用electron开发qq了，原来真事啊，估计顺便把linux的也做了",
-            "好东西，收藏！"
+            "好东西，收藏！",
+            "异步请求数据状态管理库可以参考vue query，react query官方出品，react技术栈里有 ahooks的userequest，swr，react query，vue中也有类似实现",
+            "又可以面向掘金编程课，真的好喜欢！",
+            "请问下setup 上面加 name 是用了什么插件吗？我在官方文档没找到这个",
+            "👍 例子详细易懂。\n我也写了个和作者差不多的请求hook封装成库，方便业务使用封装📦，真的很方便，可以look look。\nhttps://inhiblab-core.gitee.io/docs/hooks/useRequest",
+            "看的有些吃力，看来我的水平还是很low",
+            "没有微信生态又有什么用呢"
         ]
     }
 }
