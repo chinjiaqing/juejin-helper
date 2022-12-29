@@ -2650,7 +2650,14 @@
             "RootRenderFuncion 少了个t",
             "render函数渲染的组件，如何也继承main中createApp后use的插件？例如ElementUI，pinia等，等一个大佬来回答[呲牙]，困扰我很久了",
             "很棒噢",
-            "学到了~"
+            "学到了~",
+            "还是rails的ActiveRecord yyds啊",
+            "gorm不好用吗？[思考]",
+            "然而sql 才是基本， 简单查询还好说， 复杂查询不可信任这类构造器的生成与优化",
+            "看了使用说明,有orm的部分\n要不然查询出来的结果就是未知的",
+            "DB::table()->where()->get()这是查询构造器，并不是ORM。看你的写法应该是Laravel里的吧？Eloquent ORM那一章里的内容才是ORM。所以你推荐的这个GO的库只是实现了稍微好用点的查询构造器，ORM还没呢。",
+            "我说呢linux的qq怎么无了，，前几天看到消息说是腾讯用electron开发qq了，原来真事啊，估计顺便把linux的也做了",
+            "好东西，收藏！"
         ]
     }
 }
