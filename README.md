@@ -1,7 +1,9 @@
 <h1 align="center" >
 <font color=orange>🏵️ 掘金助手</font>
 </h1>
-
+<h1 align="center" >
+<font color=red>签到应该是没问题的，就是刷成长等级有封号风险，慎用，就这样吧，也没时间更新了。</font>
+</h1>
 <p align="center">
 <font color=Peru>无需复制 cookie,直接部署后托管就行，懂我意思吧</font>
 </p>
